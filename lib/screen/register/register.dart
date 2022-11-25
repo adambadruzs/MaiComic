@@ -11,6 +11,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   TextEditingController controllerUsername = TextEditingController();
+  TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
 
   @override
@@ -44,6 +45,27 @@ class _RegisterState extends State<Register> {
               ),
             ),
             const SizedBox(height: 25),
+            TextField(
+              controller: controllerEmail,
+              style: const TextStyle(
+                fontFamily: 'Poppins Light',
+                fontSize: 16,
+              ),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                labelText: "Email",
+                hintText: "Email",
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                hintStyle: const TextStyle(
+                  fontFamily: 'Poppins Light',
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            const SizedBox(height: 18),
             TextField(
               controller: controllerUsername,
               style: const TextStyle(
@@ -89,6 +111,8 @@ class _RegisterState extends State<Register> {
             const Spacer(),
             ElevatedButton(
               onPressed: () async {
+                var email = await Dio().get(
+                    'http://localhost:3000/user?email=${controllerEmail.text}');
                 var username = await Dio().get(
                     'http://localhost:3000/user?username=${controllerUsername.text}');
                 var password = await Dio().get(
@@ -100,13 +124,23 @@ class _RegisterState extends State<Register> {
                     content: Text("Username Already Exist"),
                   ));
                   controllerUsername.clear();
+                  controllerEmail.clear();
+                  controllerPassword.clear();
+                } else if (email.data.length > 0) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    backgroundColor: Colors.red,
+                    content: Text("Email Already Exist"),
+                  ));
+                  controllerUsername.clear();
+                  controllerEmail.clear();
                   controllerPassword.clear();
                 } else {
-                  var response = await Dio().post('http://localhost:3000/user',
-                      data: {
-                        "username": controllerUsername.text,
-                        "password": controllerPassword.text
-                      });
+                  var response =
+                      await Dio().post('http://localhost:3000/user', data: {
+                    "username": controllerUsername.text,
+                    "email": controllerEmail.text,
+                    "password": controllerPassword.text
+                  });
 
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Login()));

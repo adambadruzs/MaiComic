@@ -15,15 +15,6 @@ class _LoginState extends State<Login> {
   TextEditingController controllerUsername = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
 
-  // ThemeData themeData = ThemeData.light();
-
-  // void setTheme(bool isDarkmode) {
-  //   setState(() {
-  //     themeData = (isDarkmode) ? ThemeData.dark() : ThemeData.light();
-  //     SharedPref.pref?.setBool('isDarkmode', isDarkmode);
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +115,7 @@ class _LoginState extends State<Login> {
                     'http://localhost:3000/user?password=${controllerPassword.text}');
                 if (username.data.length > 0) {
                   if (password.data.length > 0) {
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => Home()));
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -135,7 +126,7 @@ class _LoginState extends State<Login> {
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     backgroundColor: Colors.red,
-                    content: Text("Email Salah"),
+                    content: Text("Email atau Username Salah"),
                   ));
                 }
               },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maicomic/screen/home/home.dart';
 import 'package:maicomic/screen/splash/splash.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MaiComic',
-      home: SplashScreen(),
+      home: Home(),
     );
   }
 }

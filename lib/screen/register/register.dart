@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:maicomic/screen/login/login.dart';
 
+import '../../service/maicomic_services.dart';
+
 class Register extends StatefulWidget {
   const Register({super.key});
 
@@ -111,12 +113,14 @@ class _RegisterState extends State<Register> {
             const Spacer(),
             ElevatedButton(
               onPressed: () async {
-                var email = await Dio().get(
-                    'http://localhost:3000/user?email=${controllerEmail.text}');
-                var username = await Dio().get(
-                    'http://localhost:3000/user?username=${controllerUsername.text}');
-                var password = await Dio().get(
-                    'http://localhost:3000/user?password=${controllerPassword.text}');
+                var baseUrl = ComicService().baseUrlApi;
+
+                var email = await Dio()
+                    .get('$baseUrl/users?email=${controllerEmail.text}');
+                var username = await Dio()
+                    .get('$baseUrl/users?username=${controllerUsername.text}');
+                // var password = await Dio()
+                //     .get('$baseUrl/user?password=${controllerPassword.text}');
 
                 if (username.data.length > 0) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -135,8 +139,7 @@ class _RegisterState extends State<Register> {
                   controllerEmail.clear();
                   controllerPassword.clear();
                 } else {
-                  var response =
-                      await Dio().post('http://localhost:3000/user', data: {
+                  var response = await Dio().post('$baseUrl/user', data: {
                     "username": controllerUsername.text,
                     "email": controllerEmail.text,
                     "password": controllerPassword.text

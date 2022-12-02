@@ -1,86 +1,100 @@
 {
-    "data": [
-      {
-        "id": 1,
-        "cCover": "https://images.unsplash.com/photo-1612927601601-6638404737ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-        "cName": "Solo Leveling",
-        "cEpisode": 1,
-        "cAuthor": "Dream Factory Studio",
-        "cStatus": "Ongoing",
-        "cType": "Manhwa",
-        "cDescription": "Delicious Lava Ramene with Spicy taste"
-      },
-      {
-        "cCover": "https://images.unsplash.com/photo-1612927601601-6638404737ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-        "cName": "Solo Leveling",
-        "cEpisode": 1,
-        "cAuthor": "Dream Factory Studio",
-        "cStatus": "Ongoing",
-        "cType": "Manhwa",
-        "cDescription": "Delicious Lava Ramene with Spicy taste",
-        "id": 2
-      },
-      {
-        "cCover": "https://images.unsplash.com/photo-1612927601601-6638404737ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-        "cName": "Solo Leveling",
-        "cEpisode": 1,
-        "cAuthor": "Dream Factory Studio",
-        "cStatus": "Ongoing",
-        "cType": "Manhwa",
-        "cDescription": "Delicious Lava Ramene with Spicy taste",
-        "id": 3
-      }
-    ],
-    "user": [
-      {
-        "username": "daam",
-        "password": "daa11",
-        "email": "da@gmail.com",
-        "favourite": [
-          {
-            "id": 1,
-            "cName": "Solo Leveling"
-          }
-        ],
-        "id": 1
-      },
-      {
-        "username": "adam",
-        "password": "adam11",
-        "email": "adam11@gmail.com",
-        "id": 2
-      },
-      {
-        "username": "Dami",
-        "password": "Dami11",
-        "email": "Dami12@gmail.com",
-        "id": 3
-      },
-      {
-        "username": "Dami",
-        "password": "Dami11",
-        "email": "Dami12@gmail.com",
-        "gender": "male",
-        "id": 4
-      },
-      {
-        "username": "Fahrendra",
-        "password": "Fahrendra123",
-        "email": "Fahrendra123@gmail.com",
-        "gender": "male",
-        "id": 5
-      },
-      {
-        "username": "adaaaa",
-        "email": "adambadruzs@gmail.com",
-        "password": "12345",
-        "id": 6
-      },
-      {
-        "username": "adamzzs",
-        "email": "adambadruzzamannn@gmail.com",
-        "password": "123456",
-        "id": 7
-      }
-    ]
-  }
+  "comics": [
+    {
+      "id": 1,
+      "cover": "assets/images/Cover/onepunch.jpg",
+      "name": "One Punch Man",
+      "episode": 1,
+      "studio": "Dream Factory Studio",
+      "status": "Ongoing",
+      "type": "Manga",
+      "description": "Delicious Lava Ramene with Spicy taste"
+    },
+    {
+      "cover": "assets/images/Cover/xiandi.jpg",
+      "name": "Return of Xiandi",
+      "episode": 1,
+      "studio": "Luck Factory Studio",
+      "status": "Ongoing",
+      "type": "Manhua",
+      "description": "Delicious Lava Ramene with Spicy taste",
+      "id": 2
+    },
+    {
+      "cover": "assets/images/Cover/solo.jpg",
+      "name": "Solo Leveling",
+      "episode": 1,
+      "studio": "Nightmare Factory Studio",
+      "status": "Ongoing",
+      "type": "Manhwa",
+      "description": "Delicious Lava Ramene with Spicy taste",
+      "id": 3
+    },
+    {
+      "cover": "assets/images/Cover/scion.jpg",
+      "name": "Youngest Scion",
+      "episode": 1,
+      "studio": "Nightmare Factory Studio",
+      "status": "Ongoing",
+      "type": "Manhwa",
+      "description": "Delicious Lava Ramene with Spicy taste",
+      "id": 4
+    },
+    {
+      "cover": "assets/images/Cover/dimon.jpg",
+      "name": "Heavenly Demon",
+      "episode": 1,
+      "studio": "Nightmare Factory Studio",
+      "status": "Ongoing",
+      "type": "Manhwa",
+      "description": "Delicious Lava Ramene with Spicy taste",
+      "id": 5
+    }
+  ],
+  "users": [
+    {
+      "username": "daam",
+      "password": "daa11",
+      "email": "da@gmail.com",
+      "id": 1
+    },
+    {
+      "username": "adam",
+      "password": "adam11",
+      "email": "adam11@gmail.com",
+      "id": 2
+    },
+    {
+      "username": "Dami",
+      "password": "Dami11",
+      "email": "Dami12@gmail.com",
+      "id": 3
+    },
+    {
+      "username": "Dami",
+      "password": "Dami11",
+      "email": "Dami12@gmail.com",
+      "gender": "male",
+      "id": 4
+    },
+    {
+      "username": "Fahrendra",
+      "password": "Fahrendra123",
+      "email": "Fahrendra123@gmail.com",
+      "gender": "male",
+      "id": 5
+    },
+    {
+      "username": "adaaaa",
+      "email": "adambadruzs@gmail.com",
+      "password": "12345",
+      "id": 6
+    },
+    {
+      "username": "adamzzs",
+      "email": "adambadruzzamannn@gmail.com",
+      "password": "123456",
+      "id": 7
+    }
+  ]
+}

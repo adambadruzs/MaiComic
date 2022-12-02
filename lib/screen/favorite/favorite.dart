@@ -1,167 +1,319 @@
 import 'package:flutter/material.dart';
 import 'package:maicomic/constant/constant.dart';
+import 'package:maicomic/screen/detail/detailComic.dart';
+import 'package:maicomic/screen/detail/detailManga.dart';
+import 'package:maicomic/screen/detail/detailManhua.dart';
+import 'package:maicomic/screen/detail/detailManhwa.dart';
+import 'package:maicomic/screen/favorite/favorite.dart';
 import 'package:maicomic/screen/login/login.dart';
+import 'package:maicomic/screen/profile/profile.dart';
 import 'package:maicomic/service/maicomic_services.dart';
 
-class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+import '../../model/Comic.dart';
+import '../../navigator/drawer.dart';
+import '../../navigator/tab.dart';
+
+class Favourite extends StatefulWidget {
+  Favourite({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Favourite> createState() => _FavouriteState();
 }
 
-class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+class _FavouriteState extends State<Favourite> {
+  int _currentIndex = 0;
+  var lastIndex;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text(
-          'HOME',
-          style: TextStyle(
-            color: Color.fromARGB(255, 0, 0, 0),
-            fontFamily: 'Poppins Bold',
-            fontSize: 20,
-          ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
-          onPressed: () => Login(),
-        ),
-        actions: <Widget>[],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Column(
-          children: <Widget>[
-            const SizedBox(height: 10),
-            TextField(
-              controller: null,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                hintText: 'Search ramen...',
-                hintStyle: const TextStyle(
-                  fontFamily: 'Poppins Light',
-                  color: lightGrey,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: const BorderSide(color: lightGrey),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Top Comic",
-                style: TextStyle(
-                  fontFamily: "Poppins Bold",
-                  fontSize: 17,
-                  color: darkGrey,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: FutureBuilder<List<dynamic>>(
-                future: ComicService.getDataComic(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
-                  } else {
-                    if (snapshot.hasError) {
-                      return Text(snapshot.error.toString());
-                    } else {
-                      return GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 5,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 0.75,
+    Widget tabSemua = FutureBuilder<List<ComicModel>>(
+      future: ComicService().fetchDataComic(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          } else {
+            return Container(
+              color: black,
+              child: ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailComic(comic: snapshot.data![index])));
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 190,
+                            width: 400,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(snapshot.data![index].cover),
+                            )),
+                            // child: Image.asset(
+                            //   snapshot.data![index].cover,
+                            //   fit: BoxFit.cover,
+                            // ),
                           ),
-                          itemCount: snapshot.data!.length,
-                          padding: EdgeInsets.all(10),
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: <Widget>[
-                                Expanded(
-                                  child: Container(
-                                    // height: 170,
-                                    // width: 160,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: NetworkImage(
-                                              "${snapshot.data![index]['img_url']}"),
-                                        )),
+                          const SizedBox(height: 10),
+                          Padding(
+                              padding: const EdgeInsets.only(right: 140),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    snapshot.data![index].name,
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: white),
                                   ),
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  "${snapshot.data![index]['product_name']}",
-                                  style: TextStyle(
-                                    color: lightGrey,
-                                    fontFamily: 'Poppins Light',
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    snapshot.data![index].description,
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      color: white,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 2),
-                                Text(
-                                  "${snapshot.data![index]['price']}",
-                                  style: TextStyle(
-                                    color: darkGrey,
-                                    fontFamily: 'Poppins Regular',
+                                  const SizedBox(height: 15),
+                                  Text(
+                                    "Chapter ${snapshot.data![index].episode}",
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                      color: white,
+                                    ),
                                   ),
+                                  const SizedBox(height: 20),
+                                ],
+                              )),
+                        ],
+                      ),
+                    );
+                  }),
+            );
+          }
+        }
+      },
+    );
+
+    Widget tabManga = FutureBuilder<List<ComicModel>>(
+      future: ComicService().fetchDataComicManga(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          } else {
+            return Container(
+                color: black,
+                child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.75,
+                    ),
+                    itemCount: snapshot.data!.length,
+                    padding: const EdgeInsets.all(10),
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailComicManga(
+                                        comic: snapshot.data![index])));
+                          },
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  // decoration: ,
+                                  // child: Image.asset(
+                                  //   snapshot.data![index].cover,
+                                  //   fit: BoxFit.cover,
+                                  // ),
+                                  // height: 170,
+                                  // width: 160,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: AssetImage(
+                                            snapshot.data![index].cover),
+                                      )),
                                 ),
-                              ],
-                            );
-                          });
-                    }
-                  }
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-                backgroundColor: Colors.blue),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Search',
-                backgroundColor: Colors.blue),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-              backgroundColor: Colors.blue,
-            ),
-          ],
-          type: BottomNavigationBarType.shifting,
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black,
-          iconSize: 30,
-          onTap: _onItemTapped,
-          elevation: 5),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                snapshot.data![index].name,
+                                style: const TextStyle(
+                                  color: white,
+                                  fontFamily: 'Poppins Light',
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                            ],
+                          ));
+                    }));
+          }
+        }
+      },
+    );
+
+    Widget tabManhua = FutureBuilder<List<ComicModel>>(
+      future: ComicService().fetchDataComicManhua(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          } else {
+            return Container(
+                color: black,
+                child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.75,
+                    ),
+                    itemCount: snapshot.data!.length,
+                    padding: const EdgeInsets.all(10),
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailComicManga(
+                                        comic: snapshot.data![index])));
+                          },
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  // decoration: ,
+                                  // child: Image.asset(
+                                  //   snapshot.data![index].cover,
+                                  //   fit: BoxFit.cover,
+                                  // ),
+                                  // height: 170,
+                                  // width: 160,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: AssetImage(
+                                            snapshot.data![index].cover),
+                                      )),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                snapshot.data![index].name,
+                                style: const TextStyle(
+                                  color: white,
+                                  fontFamily: 'Poppins Light',
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                            ],
+                          ));
+                    }));
+          }
+        }
+      },
+    );
+
+    Widget tabManhwa = FutureBuilder<List<ComicModel>>(
+      future: ComicService().fetchDataComicManhwa(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          } else {
+            return Container(
+                color: black,
+                child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.75,
+                    ),
+                    itemCount: snapshot.data!.length,
+                    padding: const EdgeInsets.all(10),
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailComicManga(
+                                        comic: snapshot.data![index])));
+                          },
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  // decoration: ,
+                                  // child: Image.asset(
+                                  //   snapshot.data![index].cover,
+                                  //   fit: BoxFit.cover,
+                                  // ),
+                                  // height: 170,
+                                  // width: 160,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: AssetImage(
+                                            snapshot.data![index].cover),
+                                      )),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                snapshot.data![index].name,
+                                style: const TextStyle(
+                                  color: white,
+                                  fontFamily: 'Poppins Light',
+                                ),
+                              ),
+                            ],
+                          ));
+                    }));
+          }
+        }
+      },
+    );
+
+    return TabsController(
+      Tab1: tabSemua,
+      Tab2: tabManga,
+      Tab3: tabManhua,
+      Tab4: tabManhwa,
     );
   }
 }

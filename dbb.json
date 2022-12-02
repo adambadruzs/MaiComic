@@ -1,0 +1,92 @@
+{
+    "comics": [
+      {
+        "id": 1,
+        "coverId": "assets/images/onepunch.jpg",
+        "name": "One Punch Man",
+        "episode": 1,
+        "studioId": 1,
+        "status": "Ongoing",
+        "type": "Manga",
+        "description": "Delicious Lava Ramene with Spicy taste"
+      },
+      {
+        "coverId": "assets/images/xiandi.jpg",
+        "name": "Return of Xiandi",
+        "episode": 1,
+        "studioId": 2,
+        "status": "Ongoing",
+        "type": "Manhua",
+        "description": "Delicious Lava Ramene with Spicy taste",
+        "id": 2
+      },
+      {
+        "coverId": "assets/images/solo.jpg",
+        "name": "Solo Leveling",
+        "episode": 1,
+        "studioId": 3,
+        "status": "Ongoing",
+        "type": "Manhwa",
+        "description": "Delicious Lava Ramene with Spicy taste",
+        "id": 3
+      },
+      {
+        "coverId": "assets/images/scion.jpg",
+        "name": "Youngest Scion",
+        "episode": 1,
+        "studioId": 3,
+        "status": "Ongoing",
+        "type": "Manhwa",
+        "description": "Delicious Lava Ramene with Spicy taste",
+        "id": 4
+      },
+      {
+        "coverId": "assets/images/dimon.jpg",
+        "name": "Heavenly Demon",
+        "episode": 1,
+        "studioId": 3,
+        "status": "Ongoing",
+        "type": "Manhwa",
+        "description": "Delicious Lava Ramene with Spicy taste",
+        "id": 5
+      },
+      {
+        "coverId": 1,
+        "name": "Heavenly Demon",
+        "episode": 1,
+        "studioId": 3,
+        "status": "Ongoing",
+        "type": "Manhwa",
+        "description": "Delicious Lava Ramene with Spicy taste",
+        "id": 6
+      }
+    ],
+    "users": [
+      {
+        "username": "daam",
+        "password": "daa11",
+        "email": "da@gmail.com",
+        "id": 1
+      }
+    ],
+    "covers": [
+      {
+        "name": "{name: 1669698385339.jpg}",
+        "id": 1
+      }
+    ],
+    "studios": [
+      {
+        "name": "Dream Factory Studio",
+        "id": 1
+      },
+      {
+        "name": "Luck Factory Studio",
+        "id": 2
+      },
+      {
+        "name": "Nightmare Factory Studio",
+        "id": 3
+      }
+    ]
+  }

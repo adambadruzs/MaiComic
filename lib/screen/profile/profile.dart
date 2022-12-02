@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:maicomic/constant/constant.dart';
 import 'package:maicomic/screen/home/home.dart';
+
+import '../../navigator/drawer.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -9,15 +12,17 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  int _currentIndex = 0;
+  var lastIndex;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: white,
             ),
             onPressed: () {
               Navigator.pop(
@@ -25,116 +30,120 @@ class _ProfileState extends State<Profile> {
             },
           ),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            child: Column(
-              children: <Widget>[
-                const SizedBox(
-                  height: 20,
-                ),
-                const SizedBox(
-                  height: 125,
-                  width: 125,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/yuu.png"),
+        body: Container(
+          color: white,
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(
+                    height: 20,
                   ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(right: 250),
-                  child: const Text("Nama",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 18,
-                      )),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  style: const TextStyle(
-                    fontFamily: 'Poppins Light',
-                    fontSize: 16,
-                  ),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  const SizedBox(
+                    height: 125,
+                    width: 125,
+                    child: CircleAvatar(
+                      backgroundImage:
+                          AssetImage("assets/images/Profile/yuu.png"),
                     ),
-                    labelText: "Adam Badruzzaman",
-                    hintText: "Ganti Nama",
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 18),
-                    hintStyle: const TextStyle(
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(right: 300),
+                    child: const Text("Nama",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                        )),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    style: const TextStyle(
                       fontFamily: 'Poppins Light',
                       fontSize: 16,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(right: 265),
-                  child: const Text("NIM",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 18,
-                      )),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  style: const TextStyle(
-                    fontFamily: 'Poppins Light',
-                    fontSize: 16,
-                  ),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      labelText: "Adam Badruzzaman",
+                      hintText: "Ganti Nama",
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 18),
+                      hintStyle: const TextStyle(
+                        fontFamily: 'Poppins Light',
+                        fontSize: 16,
+                      ),
                     ),
-                    labelText: "200605110161",
-                    hintText: "Ganti NIM",
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 18),
-                    hintStyle: const TextStyle(
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(right: 310),
+                    child: const Text("NIM",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                        )),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    style: const TextStyle(
                       fontFamily: 'Poppins Light',
                       fontSize: 16,
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(right: 250),
-                  child: const Text("Kelas",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 18,
-                      )),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  style: const TextStyle(
-                    fontFamily: 'Poppins Light',
-                    fontSize: 16,
-                  ),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      labelText: "200605110161",
+                      hintText: "Ganti NIM",
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 18),
+                      hintStyle: const TextStyle(
+                        fontFamily: 'Poppins Light',
+                        fontSize: 16,
+                      ),
                     ),
-                    labelText: "Pemrograman Mobile - D",
-                    hintText: "Ganti Kelas",
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 18),
-                    hintStyle: const TextStyle(
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(right: 300),
+                    child: const Text("Kelas",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                        )),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    style: const TextStyle(
                       fontFamily: 'Poppins Light',
                       fontSize: 16,
                     ),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      labelText: "Pemrograman Mobile - D",
+                      hintText: "Ganti Kelas",
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 18),
+                      hintStyle: const TextStyle(
+                        fontFamily: 'Poppins Light',
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-              ],
+                  const SizedBox(height: 10),
+                ],
+              ),
             ),
           ),
         ));

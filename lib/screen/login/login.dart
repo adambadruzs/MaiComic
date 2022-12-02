@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:maicomic/service/maicomic_services.dart';
 
 import '../home/home.dart';
 import '../register/register.dart';
@@ -13,6 +14,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   TextEditingController controllerUsername = TextEditingController();
+  TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
 
   @override
@@ -67,7 +69,7 @@ class _LoginState extends State<Login> {
               ),
             ),
             const SizedBox(height: 18),
-            TextFormField(
+            TextField(
               obscureText: true,
               controller: controllerPassword,
               style: const TextStyle(
@@ -87,12 +89,6 @@ class _LoginState extends State<Login> {
                   fontSize: 16,
                 ),
               ),
-              validator: (text) {
-                if (text == null || text.isEmpty) {
-                  return 'Password is empty';
-                }
-                return null;
-              },
             ),
             const SizedBox(height: 15),
             const Align(
@@ -109,11 +105,15 @@ class _LoginState extends State<Login> {
             const Spacer(),
             ElevatedButton(
               onPressed: () async {
-                var username = await Dio().get(
-                    'http://localhost:3000/user?username=${controllerUsername.text}');
-                var password = await Dio().get(
-                    'http://localhost:3000/user?password=${controllerPassword.text}');
-                if (username.data.length > 0) {
+                var baseUrl = ComicService().baseUrlApi;
+
+                var username = await Dio()
+                    .get('$baseUrl/users?username=${controllerUsername.text}');
+                var email = await Dio()
+                    .get('$baseUrl/users?username=${controllerEmail.text}');
+                var password = await Dio()
+                    .get('$baseUrl/users?password=${controllerPassword.text}');
+                if (username.data.length || email.data.length > 0) {
                   if (password.data.length > 0) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => Home()));

@@ -3,11 +3,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:maicomic/screen/home/home.dart';
+import 'package:maicomic/view/home/home.dart';
 import 'package:maicomic/service/maicomic_services.dart';
 
+import '../../model/User.dart';
+
 class UpdateComics extends StatefulWidget {
-  const UpdateComics({Key? key}) : super(key: key);
+  int user;
+  UpdateComics({Key? key, required this.user}) : super(key: key);
 
   @override
   State<UpdateComics> createState() => _UpdateComicsState();
@@ -255,6 +258,7 @@ class _UpdateComicsState extends State<UpdateComics> {
     var response = await dio.post('$Emu/upload', data: formData);
 
     var cover = response.data.toString();
+    cover = cover.replaceAll(RegExp('[{name: }]'), '');
     debugPrint(cover);
 
     var episodes = int.parse(episode.text);
@@ -274,7 +278,7 @@ class _UpdateComicsState extends State<UpdateComics> {
         await dio.patch('$baseUrlApi/comics/$id', data: uploadDataData);
     debugPrint(responseApi.data.toString());
 
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Home()));
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => Home(user: widget.user)));
   }
 }

@@ -3,11 +3,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:maicomic/screen/home/home.dart';
+import 'package:maicomic/view/home/home.dart';
 import 'package:maicomic/service/maicomic_services.dart';
 
+import '../../model/User.dart';
+
 class PostComics extends StatefulWidget {
-  const PostComics({Key? key}) : super(key: key);
+  int user;
+  PostComics({Key? key, required this.user}) : super(key: key);
 
   @override
   State<PostComics> createState() => _PostComicsState();
@@ -232,13 +235,13 @@ class _PostComicsState extends State<PostComics> {
     });
     var response = await dio.post('$Emu/upload', data: formData);
     var cover = response.data.toString();
-    // var covers = Storage;
+    cover = cover.replaceAll(RegExp('[{name: }]'), '');
+
     debugPrint(cover);
 
     var episodes = int.parse(episode.text);
 
     Map<String, dynamic> uploadDataData = {
-      // ignore: unnecessary_string_interpolations
       'cover': 'assets/images/Cover/$cover',
       'name': name.text,
       'episode': episodes,
@@ -251,7 +254,7 @@ class _PostComicsState extends State<PostComics> {
         await dio.post('$baseUrlApi/comics', data: uploadDataData);
     debugPrint(responseApi.data.toString());
 
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Home()));
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => Home(user: widget.user)));
   }
 }

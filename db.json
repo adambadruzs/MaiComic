@@ -5,57 +5,73 @@
       "cover": "assets/images/Cover/onepunch.jpg",
       "name": "One Punch Man",
       "episode": 1,
-      "studio": "Dream Factory Studio",
+      "studioId": 1,
       "status": "Ongoing",
       "type": "Manga",
-      "description": "Delicious Lava Ramene with Spicy taste"
+      "description": "Delicious Lava Ramene with Spicy taste",
+      "isFavorite": false
     },
     {
       "cover": "assets/images/Cover/xiandi.jpg",
       "name": "Return of Xiandi",
       "episode": 1,
-      "studio": "Luck Factory Studio",
+      "studioId": 2,
       "status": "Ongoing",
       "type": "Manhua",
       "description": "Delicious Lava Ramene with Spicy taste",
-      "id": 2
+      "id": 2,
+      "isFavorite": true
     },
     {
       "cover": "assets/images/Cover/solo.jpg",
       "name": "Solo Leveling",
       "episode": 1,
-      "studio": "Nightmare Factory Studio",
+      "studioId": 3,
       "status": "Ongoing",
       "type": "Manhwa",
       "description": "Delicious Lava Ramene with Spicy taste",
-      "id": 3
+      "id": 3,
+      "isFavorite": true
     },
     {
       "cover": "assets/images/Cover/scion.jpg",
       "name": "Youngest Scion",
       "episode": 1,
-      "studio": "Nightmare Factory Studio",
+      "studioId": 3,
       "status": "Ongoing",
       "type": "Manhwa",
       "description": "Delicious Lava Ramene with Spicy taste",
-      "id": 4
+      "id": 4,
+      "isFavorite": true
     },
     {
       "cover": "assets/images/Cover/dimon.jpg",
       "name": "Heavenly Demon",
       "episode": 1,
-      "studio": "Nightmare Factory Studio",
+      "studioId": 3,
       "status": "Ongoing",
       "type": "Manhwa",
       "description": "Delicious Lava Ramene with Spicy taste",
-      "id": 5
+      "id": 5,
+      "isFavorite": false
+    },
+    {
+      "cover": "assets/images/Cover/dimon.jpg",
+      "name": "Heavenly Demonzz",
+      "episode": 1,
+      "studioId": 2,
+      "status": "Ongoing",
+      "type": "Manhwa",
+      "description": "Delicious Lava Ramene with Spicy taste",
+      "id": 6,
+      "isFavorite": false
     }
   ],
   "users": [
     {
-      "username": "daam",
-      "password": "daa11",
-      "email": "da@gmail.com",
+      "username": "daaa",
+      "email": "daa@gmail.com",
+      "password": "123",
       "id": 1
     },
     {
@@ -69,32 +85,23 @@
       "password": "Dami11",
       "email": "Dami12@gmail.com",
       "id": 3
+    }
+  ],
+  "studios": [
+    {
+      "name": "Dream Factory Studio",
+      "tahunBerdiri": 2019,
+      "id": 1
     },
     {
-      "username": "Dami",
-      "password": "Dami11",
-      "email": "Dami12@gmail.com",
-      "gender": "male",
-      "id": 4
+      "name": "Luck Factory Studio",
+      "tahunBerdiri": 2002,
+      "id": 2
     },
     {
-      "username": "Fahrendra",
-      "password": "Fahrendra123",
-      "email": "Fahrendra123@gmail.com",
-      "gender": "male",
-      "id": 5
-    },
-    {
-      "username": "adaaaa",
-      "email": "adambadruzs@gmail.com",
-      "password": "12345",
-      "id": 6
-    },
-    {
-      "username": "adamzzs",
-      "email": "adambadruzzamannn@gmail.com",
-      "password": "123456",
-      "id": 7
+      "name": "Nightmare Factory Studio",
+      "tahunBerdiri": 2001,
+      "id": 3
     }
   ]
 }

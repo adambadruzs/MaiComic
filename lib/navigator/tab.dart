@@ -2,22 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maicomic/constant/constant.dart';
 import 'package:maicomic/controller/controller.dart';
-import 'package:maicomic/navigator/butnov.dart';
 import 'package:maicomic/navigator/drawer.dart';
-import 'package:maicomic/screen/crud/crud.dart';
-
-import '../screen/favorite/favorite.dart';
-import '../screen/home/home.dart';
-import '../screen/profile/profile.dart';
+import 'package:maicomic/view/crud/crud.dart';
+import '../model/User.dart';
+import '../view/home/home.dart';
+import '../view/profile/profile.dart';
 
 class TabsController extends StatelessWidget {
+  // final UserModel user;
+  int user;
   var Tab1, Tab2, Tab3, Tab4;
   TabsController(
       {required this.Tab1,
       required this.Tab2,
       required this.Tab3,
-      required this.Tab4});
+      required this.Tab4,
+      required this.user});
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -58,7 +60,7 @@ class TabsController extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => Crud(),
+                      builder: (context) => Crud(user: user),
                     ));
                   },
                   child: const Icon(
@@ -68,7 +70,9 @@ class TabsController extends StatelessWidget {
                 )),
           ],
         ),
-        drawer: DrawerWidget(),
+        drawer: DrawerWidget(
+          user: user,
+        ),
         body: TabBarView(
           children: <Widget>[Tab1, Tab2, Tab3, Tab4],
         ),

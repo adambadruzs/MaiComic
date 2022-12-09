@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:maicomic/constant/constant.dart';
+import 'package:maicomic/model/Studio.dart';
 import 'package:maicomic/navigator/tab.dart';
-import 'package:maicomic/screen/detail/detailComic.dart';
-import 'package:maicomic/screen/detail/detailManga.dart';
-import 'package:maicomic/screen/detail/detailManhua.dart';
-import 'package:maicomic/screen/detail/detailManhwa.dart';
-import 'package:maicomic/screen/favorite/favorite.dart';
-import 'package:maicomic/screen/login/login.dart';
-import 'package:maicomic/screen/profile/profile.dart';
+import 'package:maicomic/view/detail/detailComic.dart';
+
+import 'package:maicomic/view/login/login.dart';
+import 'package:maicomic/view/profile/profile.dart';
 import 'package:maicomic/service/maicomic_services.dart';
 
 import '../../model/Comic.dart';
-import '../../navigator/butnov.dart';
+
+import '../../model/User.dart';
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  // final UserModel user;
+  int user;
+  Home({Key? key, required this.user}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -45,8 +46,13 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    DetailComic(comic: snapshot.data![index])));
+                                builder: (context) => DetailComic(
+                                      comic: snapshot.data![index],
+                                      user: widget.user,
+                                      fetchcomic:
+                                          ComicService().fetchDataComic(),
+                                      // studio: StudioModel(id: s,name: )
+                                    )));
                       },
                       child: Column(
                         children: [
@@ -55,12 +61,12 @@ class _HomeState extends State<Home> {
                             width: 400,
                             // decoration: BoxDecoration(
                             //     image: DecorationImage(
-                            //   fit: BoxFit.cover,
+                            //   fit: BoxFit.fill,
                             //   image: AssetImage(snapshot.data![index].cover),
                             // )),
                             child: Image.asset(
                               snapshot.data![index].cover,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -125,8 +131,13 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DetailComicManga(
-                                      comic: snapshot.data![index])));
+                                  builder: (context) => DetailComic(
+                                        comic: snapshot.data![index],
+                                        user: widget.user,
+                                        fetchcomic: ComicService()
+                                            .fetchDataComicManga(),
+                                        // studio: StudioModel(id: s,name: )
+                                      )));
                         },
                         child: Column(
                           children: [
@@ -135,12 +146,12 @@ class _HomeState extends State<Home> {
                               width: 400,
                               // decoration: BoxDecoration(
                               //     image: DecorationImage(
-                              //   fit: BoxFit.cover,
+                              //   fit: BoxFit.fill,
                               //   image: AssetImage(snapshot.data![index].cover),
                               // )),
                               child: Image.asset(
                                 snapshot.data![index].cover,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                               ),
                             ),
                             const SizedBox(height: 10),
@@ -204,8 +215,13 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DetailComicManhua(
-                                      comic: snapshot.data![index])));
+                                  builder: (context) => DetailComic(
+                                        comic: snapshot.data![index],
+                                        user: widget.user,
+                                        fetchcomic: ComicService()
+                                            .fetchDataComicManhua(),
+                                        // studio: StudioModel(id: s,name: )
+                                      )));
                         },
                         child: Column(
                           children: [
@@ -214,12 +230,12 @@ class _HomeState extends State<Home> {
                               width: 400,
                               // decoration: BoxDecoration(
                               //     image: DecorationImage(
-                              //   fit: BoxFit.cover,
+                              //   fit: BoxFit.fill,
                               //   image: AssetImage(snapshot.data![index].cover),
                               // )),
                               child: Image.asset(
                                 snapshot.data![index].cover,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                               ),
                             ),
                             const SizedBox(height: 10),
@@ -283,8 +299,13 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DetailComicManhwa(
-                                    comic: snapshot.data![index])));
+                                builder: (context) => DetailComic(
+                                      comic: snapshot.data![index],
+                                      user: widget.user,
+                                      fetchcomic:
+                                          ComicService().fetchDataComicManhwa(),
+                                      // studio: StudioModel(id: s,name: )
+                                    )));
                       },
                       child: Column(
                         children: [
@@ -293,12 +314,12 @@ class _HomeState extends State<Home> {
                             width: 400,
                             // decoration: BoxDecoration(
                             //     image: DecorationImage(
-                            //   fit: BoxFit.cover,
+                            //   fit: BoxFit.fill,
                             //   image: AssetImage(snapshot.data![index].cover),
                             // )),
                             child: Image.asset(
                               snapshot.data![index].cover,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -349,6 +370,7 @@ class _HomeState extends State<Home> {
       Tab2: tabManga,
       Tab3: tabManhua,
       Tab4: tabManhwa,
+      user: widget.user,
     );
   }
 }

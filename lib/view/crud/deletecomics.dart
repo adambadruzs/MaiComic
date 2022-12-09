@@ -3,11 +3,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:maicomic/screen/home/home.dart';
+import 'package:maicomic/view/home/home.dart';
 import 'package:maicomic/service/maicomic_services.dart';
 
+import '../../model/User.dart';
+
 class DeleteComics extends StatefulWidget {
-  const DeleteComics({Key? key}) : super(key: key);
+  int user;
+  DeleteComics({Key? key, required this.user}) : super(key: key);
 
   @override
   State<DeleteComics> createState() => _DeleteComicsState();
@@ -89,7 +92,7 @@ class _DeleteComicsState extends State<DeleteComics> {
     var responseApi = await dio.delete('$baseUrlApi/comics/${id.text}');
     debugPrint(responseApi.data.toString());
 
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Home()));
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => Home(user: widget.user)));
   }
 }

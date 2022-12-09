@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:maicomic/screen/crud/postcomics.dart';
-import 'package:maicomic/screen/crud/updatecomics.dart';
+import 'package:maicomic/view/crud/gambar.dart';
+import 'package:maicomic/view/crud/postcomics.dart';
+import 'package:maicomic/view/crud/updatecomics.dart';
 
-import '../screen/favorite/favorite.dart';
-import '../screen/home/home.dart';
-import '../screen/profile/profile.dart';
-import 'package:maicomic/screen/home/home.dart';
-import 'package:maicomic/screen/login/login.dart';
-import 'package:maicomic/screen/splash/splashscreen.dart';
+import 'view/home/home.dart';
+import 'view/profile/profile.dart';
+import 'package:maicomic/view/home/home.dart';
+import 'package:maicomic/view/login/login.dart';
+import 'package:maicomic/view/splash/splashscreen.dart';
 
 import 'navigator/drawer.dart';
 
@@ -25,8 +25,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Home(),
+    return const MaterialApp(
+      home: Login(),
     );
   }
 }

@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:maicomic/constant/constant.dart';
-import 'package:maicomic/view/home/home.dart';
+import 'package:maicomic/view/login/login.dart';
+import 'package:maicomic/viewmodel/maicomic_services.dart';
 
+import '../../constant/constant.dart';
 import '../../model/User.dart';
 import '../../navigator/drawer.dart';
-import '../../service/maicomic_services.dart';
+import '../home/home.dart';
 
 class Profile extends StatefulWidget {
   // final UserModel user;
@@ -25,7 +26,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: black,
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back,
@@ -172,63 +173,59 @@ class _ProfileState extends State<Profile> {
 
                                     int id = snapshot.data!.id;
 
-                                    if (controllerEmail.text == "") {
-                                      Map<String, dynamic> uploadDataData = {
-                                        // ignore: unnecessary_string_interpolations
-                                        'username': controllerUsername.text,
-                                        'email': snapshot.data!.email,
-                                        'password': controllerPassword.text,
-                                      };
-                                      var responseApi = await dio.put(
-                                          '$baseUrlApi/users/$id',
-                                          data: uploadDataData);
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => Profile(
-                                                    user: widget.user,
-                                                  )));
-                                    } else if (controllerUsername.text == "") {
-                                      Map<String, dynamic> uploadDataData = {
-                                        // ignore: unnecessary_string_interpolations
-                                        'username': snapshot.data!.username,
-                                        'email': controllerEmail.text,
-                                        'password': controllerPassword.text,
-                                      };
-                                      var responseApi = await dio.put(
-                                          '$baseUrlApi/users/$id',
-                                          data: uploadDataData);
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => Profile(
-                                                    user: widget.user,
-                                                  )));
-                                    } else if (controllerPassword.text == "") {
-                                      Map<String, dynamic> uploadDataData = {
-                                        // ignore: unnecessary_string_interpolations
-                                        'username': controllerUsername.text,
-                                        'email': controllerEmail.text,
-                                        'password': snapshot.data!.password,
-                                      };
-                                      var responseApi = await dio.put(
-                                          '$baseUrlApi/users/$id',
-                                          data: uploadDataData);
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => Profile(
-                                                    user: widget.user,
-                                                  )));
-                                    }
+                                    Map<String, dynamic> uploadDataData = {
+                                      // ignore: unnecessary_string_interpolations
+                                      'username': controllerUsername.text,
+                                      'email': snapshot.data!.email,
+                                      'password': controllerPassword.text,
+                                    };
+                                    var responseApi = await dio.put(
+                                        '$baseUrlApi/users/$id',
+                                        data: uploadDataData);
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Profile(
+                                                  user: widget.user,
+                                                )));
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.orangeAccent,
+                                      backgroundColor: Colors.black,
                                       minimumSize: const Size.fromHeight(55),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(20),
                                       )),
                                   child: const Text("UPDATE",
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins SemiBold',
+                                        fontSize: 18,
+                                      )),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    Dio dio = Dio();
+                                    var baseUrlApi = ComicService().baseUrlApi;
+
+                                    int id = snapshot.data!.id;
+
+                                    var responseApi = await dio.delete(
+                                      '$baseUrlApi/users/$id',
+                                    );
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Login()));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.black,
+                                      minimumSize: const Size.fromHeight(55),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      )),
+                                  child: const Text("DELETE",
                                       style: TextStyle(
                                         fontFamily: 'Poppins SemiBold',
                                         fontSize: 18,

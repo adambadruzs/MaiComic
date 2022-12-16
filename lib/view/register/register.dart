@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:maicomic/view/login/login.dart';
 
-import '../../service/maicomic_services.dart';
+import '../../viewmodel/maicomic_services.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -19,6 +19,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(elevation: 0, backgroundColor: Colors.white),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 23),
         child: Column(
@@ -26,7 +27,7 @@ class _RegisterState extends State<Register> {
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Get Your Ramen",
+                "SIGN UP",
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Poppins SemiBold',
@@ -139,7 +140,7 @@ class _RegisterState extends State<Register> {
                   controllerEmail.clear();
                   controllerPassword.clear();
                 } else {
-                  var response = await Dio().post('$baseUrl/user', data: {
+                  var response = await Dio().post('$baseUrl/users', data: {
                     "username": controllerUsername.text,
                     "email": controllerEmail.text,
                     "password": controllerPassword.text
@@ -155,7 +156,7 @@ class _RegisterState extends State<Register> {
                     fontSize: 18,
                   )),
               style: ElevatedButton.styleFrom(
-                  primary: Colors.orangeAccent,
+                  primary: Colors.black,
                   minimumSize: const Size.fromHeight(55),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -182,7 +183,7 @@ class _RegisterState extends State<Register> {
                       style: TextStyle(
                         fontFamily: 'Poppins Light',
                         fontSize: 16,
-                        color: Colors.orangeAccent,
+                        color: Colors.black,
                       )),
                 ),
               ],

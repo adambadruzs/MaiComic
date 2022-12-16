@@ -10,18 +10,7 @@ import '../model/Comic.dart';
 
 class ComicService {
   final String Emu = "http://10.0.2.2:3000";
-  final String baseUrlApi = "http://192.168.0.123:3000";
-  var networks = NetworkInfo().getWifiIP();
-
-  // final String baseUrlApi = "http://192.168.31.149:3000";
-  // final String baseUrlApi = "http://192.168.30.251:3000";
-  // final String baseUrlApi = "http://192.168.31.239:3000";
-  // final String baseUrlApi = "http://192.168.43.7:3000";
-
-// Future<InternetAddress> get selfIP async {
-//     String ip = await Wifi.ip;
-//     return InternetAddress(ip);
-// }
+  final String baseUrlApi = "http://192.168.31.144:3000";
 
   Future<List<ComicModel>> fetchDataComic() async {
     Response response = await Dio().get("$baseUrlApi/comics");
@@ -64,19 +53,12 @@ class ComicService {
     return users;
   }
 
-  // Future<List<FavoriteModel>> fetchDataFavoriteComic() async {
-  //   Response response = await Dio().get("$baseUrlApi/comics");
-
-  //   List<FavoriteModel> favorites =
-  //       (response.data as List).map((v) => FavoriteModel.fromJSON(v)).toList();
-  //   return favorites;
-  // }
-
-  // Future<dynamic> fetchDataStudio(int idStudio) async {
-  //   Response response = await Dio().get("$baseUrlApi/studios/$idStudio");
-  //   var studioz = print('berhasil' + response.data.toString());
-  //   return response.data['name'];
-  // }
+  Future<List<ComicModel>> fetchDataComicFav() async {
+    Response response = await Dio().get("$baseUrlApi/comics?isFavorite=true");
+    List<ComicModel> comics =
+        (response.data as List).map((v) => ComicModel.fromJSON(v)).toList();
+    return comics;
+  }
 
   Future<StudioModel> fetchDataStudioModel(int idStudio) async {
     Response response = await Dio().get("$baseUrlApi/studios/$idStudio");

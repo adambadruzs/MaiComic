@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
 import 'package:maicomic/view/profile/profile.dart';
-import 'package:maicomic/service/maicomic_services.dart';
+import 'package:maicomic/viewmodel/maicomic_services.dart';
 
 import '../../model/User.dart';
 import '../home/home.dart';
@@ -23,6 +23,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(elevation: 0, backgroundColor: Colors.white),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 23),
         child: Column(
@@ -93,18 +94,6 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            const SizedBox(height: 15),
-            const Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Forgot password?",
-                style: TextStyle(
-                  color: Colors.orangeAccent,
-                  fontSize: 16,
-                  fontFamily: 'Poppins Light',
-                ),
-              ),
-            ),
             const Spacer(),
             ElevatedButton(
               onPressed: () async {
@@ -166,7 +155,7 @@ class _LoginState extends State<Login> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orangeAccent,
+                  backgroundColor: Colors.black,
                   minimumSize: const Size.fromHeight(55),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -198,7 +187,7 @@ class _LoginState extends State<Login> {
                       style: TextStyle(
                         fontFamily: 'Poppins Light',
                         fontSize: 16,
-                        color: Colors.orangeAccent,
+                        color: Colors.black,
                       )),
                 ),
               ],

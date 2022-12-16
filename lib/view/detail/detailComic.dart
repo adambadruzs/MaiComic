@@ -6,7 +6,7 @@ import 'package:maicomic/model/Studio.dart';
 
 import '../../model/User.dart';
 
-import '../../service/maicomic_services.dart';
+import '../../viewmodel/maicomic_services.dart';
 import '../profile/profile.dart';
 
 class DetailComic extends StatefulWidget {
@@ -101,13 +101,6 @@ class _DetailComicState extends State<DetailComic> {
                     Container(
                       width: 395,
                       height: 470,
-                      // decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.circular(16),
-                      //     image: DecorationImage(
-                      //       fit: BoxFit.fill,
-                      //       // fit: BoxFit.cover,
-                      //       image: AssetImage("${comic.cover}"),
-                      //     )),
                       child: Image.asset(
                         widget.comic.cover,
                         fit: BoxFit.cover,

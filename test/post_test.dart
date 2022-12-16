@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:maicomic/model/User.dart';
-import 'package:maicomic/service/maicomic_services.dart';
+import 'package:maicomic/viewmodel/maicomic_services.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 
 void main() async {

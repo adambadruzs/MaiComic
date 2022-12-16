@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:maicomic/view/home/home.dart';
-import 'package:maicomic/service/maicomic_services.dart';
+import 'package:maicomic/viewmodel/maicomic_services.dart';
 
 import '../../model/User.dart';
+import '../login/login.dart';
 
 class UpdateComics extends StatefulWidget {
   int user;
@@ -24,6 +25,7 @@ class _UpdateComicsState extends State<UpdateComics> {
   TextEditingController status = TextEditingController();
   TextEditingController type = TextEditingController();
   TextEditingController description = TextEditingController();
+  TextEditingController favorite = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
   File? imageFile;
@@ -263,22 +265,23 @@ class _UpdateComicsState extends State<UpdateComics> {
 
     var episodes = int.parse(episode.text);
     var id = idcomic.text;
-
+    var studios = int.parse(studio.text);
     Map<String, dynamic> uploadDataData = {
       // ignore: unnecessary_string_interpolations
       'cover': 'assets/images/Cover/$cover',
       'name': name.text,
       'episode': episodes,
-      'studio': studio.text,
+      'studioId': studios,
       'status': status.text,
       'type': type.text,
       'description': description.text,
+      "isFavorite": false,
     };
     var responseApi =
         await dio.patch('$baseUrlApi/comics/$id', data: uploadDataData);
     debugPrint(responseApi.data.toString());
 
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => Home(user: widget.user)));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => Login()));
   }
 }

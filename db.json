@@ -8,7 +8,7 @@
       "studioId": 1,
       "status": "Ongoing",
       "type": "Manga",
-      "description": "Delicious Lava Ramene with Spicy taste",
+      "description": "Manhwa A Returner’s Magic Should Be Special yang dibuat oleh komikus bernama Jeon Sun-Wook ini bercerita tentang “Sekarang aku kembali, aku tidak akan membiarkan orang yang aku cintai mati lagi!” The Shadow Labyrinth – bencana paling mematikan yang pernah dialami umat manusia. Desir Arman, salah satu dari enam yang tersisa dari umat manusia, ada di dalam Labirin. Enam dari mereka mencoba untuk menyelesaikan level akhir Labirin tetapi akhirnya gagal, dan dunia akan berakhir. Namun, ketika Desir mengira dia akan menemui ajalnya, apa yang muncul di hadapannya adalah dunia … tiga belas tahun yang lalu ?! Desir kembali ke masa lalu, kembali ke masa ketika dia mendaftar di akademi sihir terbaik di negara itu, Havrion. Dia bersatu kembali dengan teman-temannya yang berharga, dan dia bertekad untuk mengubah masa lalu untuk menyelamatkan dunia dan orang yang dicintainya …! Tiga tahun tersisa sebelum munculnya Dunia Bayangan! Ubah masa lalu dan kumpulkan rekan-rekan yang kuat untuk menyelamatkan umat manusia!",
       "isFavorite": false
     },
     {
@@ -18,9 +18,9 @@
       "studioId": 2,
       "status": "Ongoing",
       "type": "Manhua",
-      "description": "Delicious Lava Ramene with Spicy taste",
+      "description": "Disetting pada era Taisho Jepang. Tanjirou adalah seorang anak muda yang baik hati yang hidup damai dengan keluarganya sebagai penjual batubara. kehidupan normal mereka berubah sepenuhnya ketika keluarganya dibantai oleh setan. salah satu yang selamat lainnya, adik Tanjirou ini Nezuko, telah menjadi setan ganas. Dalam rangka untuk kembali Nezuko normal dan membalas dendam pada setan yang membunuh keluarga mereka, mereka berdua berangkat pada perjalanan. Dari bakat muda, kisah petualangan darah dan pedang dimulai!",
       "id": 2,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "cover": "assets/images/Cover/solo.jpg",
@@ -29,9 +29,9 @@
       "studioId": 3,
       "status": "Ongoing",
       "type": "Manhwa",
-      "description": "Delicious Lava Ramene with Spicy taste",
+      "description": "Berkisah tentang seorang pria penyeludup kejam dan haus akan darah. Banyak yang mengatkan dia adalah monster karena darah iblisnya. Ini adalah kisahnya menyelundupkan barang-barang di dunia yang sudah porak poranda yang kembali ke Hukum alam “Siapa kuat, maka dia yang akan bertahaan",
       "id": 3,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "cover": "assets/images/Cover/scion.jpg",
@@ -40,9 +40,9 @@
       "studioId": 3,
       "status": "Ongoing",
       "type": "Manhwa",
-      "description": "Delicious Lava Ramene with Spicy taste",
+      "description": "Disetting pada era Taisho Jepang. Tanjirou adalah seorang anak muda yang baik hati yang hidup damai dengan keluarganya sebagai penjual batubara. kehidupan normal mereka berubah sepenuhnya ketika keluarganya dibantai oleh setan. salah satu yang selamat lainnya, adik Tanjirou ini Nezuko, telah menjadi setan ganas. Dalam rangka untuk kembali Nezuko normal dan membalas dendam pada setan yang membunuh keluarga mereka, mereka berdua berangkat pada perjalanan. Dari bakat muda, kisah petualangan darah dan pedang dimulai!",
       "id": 4,
-      "isFavorite": true
+      "isFavorite": false
     },
     {
       "cover": "assets/images/Cover/dimon.jpg",
@@ -51,20 +51,20 @@
       "studioId": 3,
       "status": "Ongoing",
       "type": "Manhwa",
-      "description": "Delicious Lava Ramene with Spicy taste",
+      "description": "Berkisah tentang seorang pria penyeludup kejam dan haus akan darah. Banyak yang mengatkan dia adalah monster karena darah iblisnya. Ini adalah kisahnya menyelundupkan barang-barang di dunia yang sudah porak poranda yang kembali ke Hukum alam “Siapa kuat, maka dia yang akan bertahaan",
       "id": 5,
       "isFavorite": false
     },
     {
-      "cover": "assets/images/Cover/dimon.jpg",
-      "name": "Heavenly Demonzz",
-      "episode": 1,
-      "studioId": 2,
+      "cover": "assets/images/Cover/1671151470707.jpg",
+      "name": "Chainsaw",
+      "episode": 12,
+      "studioId": 1,
       "status": "Ongoing",
-      "type": "Manhwa",
-      "description": "Delicious Lava Ramene with Spicy taste",
-      "id": 6,
-      "isFavorite": false
+      "type": "Manhua",
+      "description": "Percobaan uas",
+      "isFavorite": false,
+      "id": 6
     }
   ],
   "users": [
@@ -85,6 +85,18 @@
       "password": "Dami11",
       "email": "Dami12@gmail.com",
       "id": 3
+    },
+    {
+      "username": "uas",
+      "email": "uas@gmail.com",
+      "password": "123",
+      "id": 5
+    },
+    {
+      "username": "tes",
+      "email": "tes",
+      "password": "123",
+      "id": 6
     }
   ],
   "studios": [

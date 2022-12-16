@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:maicomic/view/home/home.dart';
-import 'package:maicomic/service/maicomic_services.dart';
+import 'package:maicomic/viewmodel/maicomic_services.dart';
 
 import '../../model/User.dart';
 

@@ -6,7 +6,7 @@ import 'package:maicomic/view/detail/detailComic.dart';
 
 import 'package:maicomic/view/login/login.dart';
 import 'package:maicomic/view/profile/profile.dart';
-import 'package:maicomic/service/maicomic_services.dart';
+import 'package:maicomic/viewmodel/maicomic_services.dart';
 
 import '../../model/Comic.dart';
 
@@ -81,14 +81,6 @@ class _HomeState extends State<Home> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: white),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    snapshot.data![index].description,
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      color: white,
-                                    ),
                                   ),
                                   const SizedBox(height: 15),
                                   Text(
@@ -167,14 +159,6 @@ class _HomeState extends State<Home> {
                                           fontWeight: FontWeight.bold,
                                           color: white),
                                     ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      snapshot.data![index].description,
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        color: white,
-                                      ),
-                                    ),
                                     const SizedBox(height: 15),
                                     Text(
                                       "Chapter ${snapshot.data![index].episode}",
@@ -251,14 +235,6 @@ class _HomeState extends State<Home> {
                                           fontWeight: FontWeight.bold,
                                           color: white),
                                     ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      snapshot.data![index].description,
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        color: white,
-                                      ),
-                                    ),
                                     const SizedBox(height: 15),
                                     Text(
                                       "Chapter ${snapshot.data![index].episode}",
@@ -334,14 +310,6 @@ class _HomeState extends State<Home> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: white),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    snapshot.data![index].description,
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      color: white,
-                                    ),
                                   ),
                                   const SizedBox(height: 15),
                                   Text(

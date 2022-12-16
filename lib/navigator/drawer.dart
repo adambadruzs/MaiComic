@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:maicomic/view/login/login.dart';
 import 'package:maicomic/view/profile/profile.dart';
 
 import '../model/User.dart';
+import '../view/favorite/favorite.dart';
 import '../view/home/home.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -37,6 +39,27 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       builder: (context) => Profile(
                             user: widget.user,
                           )))),
+          _drawerItem(
+              icon: Icons.logout,
+              text: 'Logout',
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Login()))),
+          const Divider(height: 25, thickness: 1),
+          const Padding(
+            padding: EdgeInsets.only(left: 20.0, top: 10, bottom: 10),
+            child: Text("Labels",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black54,
+                )),
+          ),
+          _drawerItem(
+              icon: Icons.bookmark,
+              text: 'Favorite',
+              onTap: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Favorite(user: widget.user)))),
         ],
       ),
     );

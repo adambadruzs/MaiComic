@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:maicomic/view/home/home.dart';
-import 'package:maicomic/service/maicomic_services.dart';
+import 'package:maicomic/view/login/login.dart';
+import 'package:maicomic/viewmodel/maicomic_services.dart';
 
 import '../../model/User.dart';
 
@@ -40,6 +41,14 @@ class _PostComicsState extends State<PostComics> {
             fontFamily: 'Poppins Bold',
             fontSize: 20,
           ),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => Home(user: widget.user),
+            ));
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -219,12 +228,6 @@ class _PostComicsState extends State<PostComics> {
 
   uploadData() async {
     Dio dio = Dio();
-    //image sender
-    // var baseUrl = ComicService().baseUrl;
-    // var baseUrl = 'http://10.115.21.35:57330'; //Dio error
-    // var baseUrl = 'http://192.168.43.7:3000'; //Dio error
-    // var baseUrl = 'http://192.168.43.7:3000'; //Dio error
-    // var baseUrl = 'http://140.213.219.22:57330'; //No Respond HP
     var Emu = ComicService().Emu; //Emu //No Respond HP
 
     //db.json
@@ -240,21 +243,23 @@ class _PostComicsState extends State<PostComics> {
     debugPrint(cover);
 
     var episodes = int.parse(episode.text);
+    var studios = int.parse(studio.text);
 
     Map<String, dynamic> uploadDataData = {
       'cover': 'assets/images/Cover/$cover',
       'name': name.text,
       'episode': episodes,
-      'studio': studio.text,
+      'studioId': studios,
       'status': status.text,
       'type': type.text,
       'description': description.text,
+      "isFavorite": false,
     };
     var responseApi =
         await dio.post('$baseUrlApi/comics', data: uploadDataData);
     debugPrint(responseApi.data.toString());
 
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => Home(user: widget.user)));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => Login()));
   }
 }

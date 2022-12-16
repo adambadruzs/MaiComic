@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:maicomic/view/crud/gambar.dart';
 import 'package:maicomic/view/crud/postcomics.dart';
 import 'package:maicomic/view/crud/updatecomics.dart';
 
@@ -25,8 +24,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Login(),
+    return MaterialApp(
+      home: SplashScreen(),
     );
   }
 }
